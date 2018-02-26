@@ -10,21 +10,18 @@ import javax.swing.JPanel;
 import entities.Ball;
 import entities.Player;
 import general.Main;
+import general.ModelController;
 
 public class DesktopPanel extends JPanel {
 	
 	private static int WIDTH;
 	private static int HEIGHT;
-	private static Player player;
-	private static Ball ball;
+	private ModelController mController;
 
-	public DesktopPanel(int width, int height, Player player, Ball ball) {
+	public DesktopPanel(int width, int height, ModelController mController) {
 		this.WIDTH = width;
 		this.HEIGHT = height;
 		this.setBounds(0, 0, this.WIDTH, this.HEIGHT);
-		
-		this.player = player;
-		this.ball = ball;
 		
 		this.setVisible(true);
 	}
@@ -41,23 +38,23 @@ public class DesktopPanel extends JPanel {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		if(Main.getController().isRunning()) {
+		if(Main.getMController().isRunning()) {
 			
-			if(!Main.getController().hasBeenStarted()) {
+			if(!Main.getMController().hasBeenStarted()) {
 				g.setColor(Color.WHITE);
 				g.drawString("Drücke Enter um das Spiel zu starten", this.WIDTH / 2 - 120, this.HEIGHT / 2);
 			}
 		
 			g.setColor(Color.WHITE);
-			g.drawString("Leben: " + Main.getController().getLeben(), this.WIDTH - 70, 20);
+			g.drawString("Leben: " + Main.getMController().getLeben(), this.WIDTH - 70, 20);
 			
 			// Spieler zeichnen
 			g.setColor(Color.GRAY);
-			g.fillRect(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+			g.fillRect(mController.getPLAYER().getX(), mController.getPLAYER().getY(), mController.getPLAYER().getWidth(), mController.getPLAYER().getHeight());
 			
 			// Ball zeichnen
 			g.setColor(Color.WHITE);
-			g.fillArc(ball.getX(), ball.getY(), ball.getWidth(), ball.getWidth(), 0, 360);
+			g.fillArc(mController.getBALL().getX(), mController.getBALL().getY(), mController.getBALL().getWidth(), mController.getBALL().getWidth(), 0, 360);
 			
 			
 			repaint();

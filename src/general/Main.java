@@ -1,8 +1,7 @@
 package general;
 
-import entities.Ball;
-import entities.Player;
 import viewcontroller.DesktopFrame;
+import viewcontroller.ViewController;
 
 public class Main {
 
@@ -10,15 +9,16 @@ public class Main {
 	private static int HEIGHT = 700;
 	private static String TITLE = "Lighthouse Broject";
 	
-	private static ModelController controller;
+	private static ModelController mController;
+	private static ViewController vController;
 	
 	public static DesktopFrame frame;
 
 	public static void main(String[] args) {
 		
-		controller = new ModelController();
+		mController = new ModelController();
+		vController = new ViewController(mController);
 
-		frame = new DesktopFrame(WIDTH, HEIGHT, TITLE, controller.getPLAYER(), controller.getBALL());
 	}
 	
 	public static int getWidth() {
@@ -29,8 +29,8 @@ public class Main {
 		return HEIGHT;
 	}
 	
-	public static ModelController getController() {
-		return controller;
+	public static ModelController getMController() {
+		return mController;
 	}
 
 }
