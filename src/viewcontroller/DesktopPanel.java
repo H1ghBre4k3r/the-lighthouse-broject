@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import entities.Ball;
 import entities.Player;
+import general.Main;
 
 public class DesktopPanel extends JPanel {
 	
@@ -40,10 +41,25 @@ public class DesktopPanel extends JPanel {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		player.draw(g);
-		ball.draw(g);
+		if(Main.getController().isRunning()) {
 		
-		repaint();
+			g.setColor(Color.WHITE);
+			g.drawString("Leben: " + Main.getController().getLeben(), this.WIDTH - 70, 20);
+			
+			// Spieler zeichnen
+			g.setColor(Color.GRAY);
+			g.fillRect(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+			
+			// Ball zeichnen
+			g.setColor(Color.WHITE);
+			g.fillArc(ball.getX(), ball.getY(), ball.getWidth(), ball.getWidth(), 0, 360);
+			
+			
+			repaint();
+		} else {
+			g.setColor(Color.WHITE);
+			g.drawString("Du hast verloren... also du bist nicht so gut wollen wir damit sagen!", this.WIDTH / 2 - 200, this.HEIGHT / 2);
+		}
 	}
 	
 

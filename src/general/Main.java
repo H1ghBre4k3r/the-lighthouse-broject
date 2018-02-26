@@ -9,18 +9,16 @@ public class Main {
 	private static int WIDTH = 500;
 	private static int HEIGHT = 700;
 	private static String TITLE = "Lighthouse Broject";
-	private static Player PLAYER;
-	private static Ball BALL;
+	
+	private static ModelController controller;
 	
 	public static DesktopFrame frame;
 
 	public static void main(String[] args) {
 		
-		System.out.println("Hello World!");
-		Player PLAYER = new Player(WIDTH / 2 - 50, HEIGHT - 50, 100, 20, 20);
-		Ball BALL = new Ball(WIDTH / 2, HEIGHT - 80, 30);
+		controller = new ModelController();
 
-		DesktopFrame frame = new DesktopFrame(WIDTH, HEIGHT, TITLE, PLAYER, BALL);
+		frame = new DesktopFrame(WIDTH, HEIGHT, TITLE, controller.getPLAYER(), controller.getBALL());
 	}
 	
 	public static int getWidth() {
@@ -29,6 +27,10 @@ public class Main {
 	
 	public static int getHeight() {
 		return HEIGHT;
+	}
+	
+	public static ModelController getController() {
+		return controller;
 	}
 
 }
