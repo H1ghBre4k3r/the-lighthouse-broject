@@ -28,8 +28,8 @@ import org.msgpack.core.MessagePack;
  */
 public class LighthouseDisplay {
 
-	private String username = "chrpau";
-	private String token = "API-TOK_bqRX-+iJm-wtgq-C2JW-RvU6";
+	private String username;
+	private String token;
 	private LighthouseDisplayHandler handler;
 	private WebSocketClient client;
 	private int debugOutput;
