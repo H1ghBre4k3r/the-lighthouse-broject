@@ -2,6 +2,8 @@ package viewcontroller;
 
 import javax.swing.JFrame;
 
+import entities.Ball;
+import entities.Player;
 import inputcontroller.InputController;
 
 
@@ -12,10 +14,16 @@ public class DesktopFrame extends JFrame {
 	private static String TITLE;
 	private DesktopPanel dpanel;
 	
-	public DesktopFrame(int width, int height, String title) {
+	private Player p;
+	private Ball b;
+	
+	public DesktopFrame(int width, int height, String title, Player p, Ball b) {
 		this.WIDTH = width;
 		this.HEIGHT = height;
 		this.TITLE = title;
+		
+		this.p = p;
+		this.b = b;
 		init();
 	}
 	
@@ -31,7 +39,7 @@ public class DesktopFrame extends JFrame {
 		this.addKeyListener(new InputController(this));
 		
 		// Zeichenfläche
-		this.dpanel = new DesktopPanel(WIDTH, HEIGHT);
+		this.dpanel = new DesktopPanel(WIDTH, HEIGHT, p, b);
 		this.add(this.dpanel);
 
 		this.requestFocus();
