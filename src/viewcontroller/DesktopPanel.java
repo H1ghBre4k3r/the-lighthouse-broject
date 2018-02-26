@@ -23,6 +23,8 @@ public class DesktopPanel extends JPanel {
 		this.HEIGHT = height;
 		this.setBounds(0, 0, this.WIDTH, this.HEIGHT);
 		
+		this.mController = mController;
+		
 		this.setVisible(true);
 	}
 	

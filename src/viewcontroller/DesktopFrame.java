@@ -22,6 +22,8 @@ public class DesktopFrame extends JFrame {
 		this.HEIGHT = height;
 		this.TITLE = title;
 		
+		this.mController = mController;
+		
 		init();
 	}
 	
