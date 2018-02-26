@@ -10,6 +10,7 @@ public class ModelController {
 	private int leben;
 	
 	private boolean running = true;
+	private boolean started = false;
 
 	public ModelController() {
 		
@@ -49,8 +50,17 @@ public class ModelController {
 		
 	}
 	
+	public void start() {
+		this.started = true;
+		this.running = true;
+	}
+	
 	public int getLeben() {
 		return this.leben;
+	}
+	
+	public boolean hasBeenStarted() {
+		return started;
 	}
 
 }

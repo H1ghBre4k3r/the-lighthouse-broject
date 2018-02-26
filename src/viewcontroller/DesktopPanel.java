@@ -42,6 +42,11 @@ public class DesktopPanel extends JPanel {
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		if(Main.getController().isRunning()) {
+			
+			if(!Main.getController().hasBeenStarted()) {
+				g.setColor(Color.WHITE);
+				g.drawString("Drücke Enter um das Spiel zu starten", this.WIDTH / 2 - 120, this.HEIGHT / 2);
+			}
 		
 			g.setColor(Color.WHITE);
 			g.drawString("Leben: " + Main.getController().getLeben(), this.WIDTH - 70, 20);

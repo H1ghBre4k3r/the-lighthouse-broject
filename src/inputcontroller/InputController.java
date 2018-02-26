@@ -26,6 +26,9 @@ public class InputController implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 
 		switch(e.getKeyCode()) {
+		case KeyEvent.VK_ENTER:
+			p.getController().start();
+			break;
 		case KeyEvent.VK_RIGHT:
 			p.move(+1);
 			break;

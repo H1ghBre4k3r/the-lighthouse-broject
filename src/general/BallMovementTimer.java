@@ -22,10 +22,12 @@ public class BallMovementTimer extends Timer {
 
 			@Override
 			public void run() {
-				if(b.getController().isRunning()) {
-					b.move();
-				} else {
-					this.cancel();
+				if(b.getController().hasBeenStarted()) {
+					if(b.getController().isRunning()) {
+						b.move();
+					} else {
+						this.cancel();
+					}
 				}
 				
 			}
