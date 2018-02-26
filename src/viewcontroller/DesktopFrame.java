@@ -36,7 +36,7 @@ public class DesktopFrame extends JFrame {
 		this.setLocationRelativeTo(null);
 	
 		// KeyListener
-		this.addKeyListener(new InputController(this));
+		this.addKeyListener(new InputController(this, p));
 		
 		// Zeichenfläche
 		this.dpanel = new DesktopPanel(WIDTH, HEIGHT, p, b);

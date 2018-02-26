@@ -42,6 +42,8 @@ public class DesktopPanel extends JPanel {
 		
 		player.draw(g);
 		ball.draw(g);
+		
+		repaint();
 	}
 	
 
