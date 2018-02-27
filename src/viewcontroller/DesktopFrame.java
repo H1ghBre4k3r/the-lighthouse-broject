@@ -2,10 +2,10 @@ package viewcontroller;
 
 import javax.swing.JFrame;
 
-import entities.Ball;
-import entities.Player;
-import general.ModelController;
 import inputcontroller.InputController;
+import model.Ball;
+import model.ModelController;
+import model.Player;
 
 
 public class DesktopFrame extends JFrame {

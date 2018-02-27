@@ -1,9 +1,7 @@
-package general;
+package model;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
-import entities.Ball;
 
 public class BallMovementTimer extends Timer {
 	

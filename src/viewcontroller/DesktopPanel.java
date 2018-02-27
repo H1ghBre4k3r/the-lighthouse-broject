@@ -7,10 +7,11 @@ import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 
-import entities.Ball;
-import entities.Player;
 import general.Main;
-import general.ModelController;
+import model.Ball;
+import model.Brick;
+import model.ModelController;
+import model.Player;
 
 public class DesktopPanel extends JPanel {
 	
@@ -57,6 +58,17 @@ public class DesktopPanel extends JPanel {
 			// Ball zeichnen
 			g.setColor(Color.WHITE);
 			g.fillArc(mController.getBALL().getX(), mController.getBALL().getY(), mController.getBALL().getWidth(), mController.getBALL().getWidth(), 0, 360);
+			
+			// Spielfeld zeichnen
+			Brick[][] bricks = mController.getFeld().getBricks();
+			double brickWidth = (double) Main.getWidth() / bricks.length;
+			
+			for(int x = 0; x < bricks.length; x++) {
+				for(int y = 0; y < bricks[0].length; y++) {
+					g.setColor(bricks[x][y].getC());
+					g.fillRect(x * (int) brickWidth + 2, 140 - (y * 20) - 1, (int) brickWidth - 6, 18);
+				}
+			}
 			
 			
 			repaint();

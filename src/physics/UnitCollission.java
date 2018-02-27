@@ -1,7 +1,8 @@
-package general;
+package physics;
 
-import entities.Ball;
-import entities.Player;
+import general.Main;
+import model.Ball;
+import model.Player;
 
 public class UnitCollission {
 	
@@ -19,9 +20,9 @@ public class UnitCollission {
 	private static void yOutOfBounce(Ball b, Player p) {
 		if(b.getY() < 0) {
 			b.flipY();
-		} else if(b.getY() + b.getWidth() > p.getY() && b.getX() > p.getX() && b.getX() + b.getWidth() < p.getX() + p.getWidth()){
+		} else if(b.getY() + b.getWidth() > p.getY() && b.getX() + b.getWidth() > p.getX() && b.getX() < p.getX() + p.getWidth()){
 			b.flipY();
-		} else if(b.getY() + b.getWidth() / 2 > p.getY()) {
+		} else if(b.getY() + b.getWidth() > Main.getHeight()) {
 			p.getController().stopGame();
 		}
 	}

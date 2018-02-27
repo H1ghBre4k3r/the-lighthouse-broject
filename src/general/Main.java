@@ -1,5 +1,6 @@
 package general;
 
+import model.ModelController;
 import viewcontroller.DesktopFrame;
 import viewcontroller.ViewController;
 

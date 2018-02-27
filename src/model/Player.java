@@ -1,7 +1,6 @@
-package entities;
+package model;
 
 import general.Main;
-import general.ModelController;
 
 public class Player {
 

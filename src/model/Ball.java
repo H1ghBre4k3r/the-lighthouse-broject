@@ -1,11 +1,9 @@
-package entities;
+package model;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import general.BallMovementTimer;
 import general.Main;
-import general.ModelController;
-import general.UnitCollission;
+import physics.UnitCollission;
 
 public class Ball {
 	

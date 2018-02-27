@@ -1,11 +1,12 @@
 package viewcontroller;
 
-import general.ModelController;
+import general.Main;
+import model.ModelController;
 
 public class ViewController {
 	
-	private static int WIDTH = 500;
-	private static int HEIGHT = 700;
+	private static int WIDTH = Main.getWidth();
+	private static int HEIGHT = Main.getHeight();
 	private static String TITLE = "Lighthouse Broject";
 	
 	private ModelController mController;

@@ -3,7 +3,7 @@ package inputcontroller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import entities.Player;
+import model.Player;
 import viewcontroller.DesktopFrame;
 
 public class InputController implements KeyListener {
