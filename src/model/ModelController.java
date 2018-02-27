@@ -11,6 +11,8 @@ public class ModelController {
 	
 	private boolean running = true;
 	private boolean started = false;
+	private boolean won = false;
+	private boolean lost = false;
 
 	public ModelController() {
 		
@@ -43,7 +45,7 @@ public class ModelController {
 		return running;
 	}
 	
-	public void stopGame() {
+	public void looseLife() {
 //		running = false;
 //		System.out.println("Du hast verloren! DU LOOOOSER!");
 		if(leben > 1) {
@@ -51,9 +53,16 @@ public class ModelController {
 			ball.reset();
 		} else {
 			running = false;
+			lost = true;
 			System.out.println("Du hast verloren! DU LOOOOSER!");
 		}
 		
+	}
+	
+	public void win() {
+		running = false;
+		won = true;
+		System.out.println("Du hast Gewonnen!");
 	}
 	
 	public void start() {
@@ -63,6 +72,14 @@ public class ModelController {
 	
 	public int getLeben() {
 		return this.leben;
+	}
+	
+	public boolean isLost() {
+		return this.lost;
+	}
+	
+	public boolean isWon() {
+		return this.won;
 	}
 	
 	public boolean hasBeenStarted() {

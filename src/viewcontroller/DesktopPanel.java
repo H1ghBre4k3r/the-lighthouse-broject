@@ -61,20 +61,27 @@ public class DesktopPanel extends JPanel {
 			
 			// Spielfeld zeichnen
 			Brick[][] bricks = mController.getFeld().getBricks();
-			double brickWidth = (double) Main.getWidth() / bricks.length;
+			int brickWidth = mController.getFeld().getBrickWidth();
+			int brickHeight = mController.getFeld().getBrickHeight();
 			
 			for(int x = 0; x < bricks.length; x++) {
 				for(int y = 0; y < bricks[0].length; y++) {
+					if(!bricks[x][y].isActive()) {
+						continue;
+					}
 					g.setColor(bricks[x][y].getC());
-					g.fillRect(x * (int) brickWidth + 2, 140 - (y * 20) - 1, (int) brickWidth - 6, 18);
+					g.fillRect(x * brickWidth + 2, 140 - (y * 20) - 1, (int) brickWidth - 6, brickHeight);
 				}
 			}
 			
 			
 			repaint();
-		} else {
+		} else if(mController.isLost()){
 			g.setColor(Color.WHITE);
 			g.drawString("Du hast verloren... also du bist nicht so gut wollen wir damit sagen!", this.WIDTH / 2 - 200, this.HEIGHT / 2);
+		} else if(mController.isWon()) {
+			g.setColor(Color.WHITE);
+			g.drawString("Du hast gewonnen... also du bist ganz gut wollen wir damit sagen!", this.WIDTH / 2 - 200, this.HEIGHT / 2);
 		}
 	}
 	

@@ -4,6 +4,9 @@ import java.awt.Color;
 
 public class Brick {
 	
+	private int x;
+	private int y;
+	
 	private Color c;
 	boolean active;
 
@@ -12,7 +15,9 @@ public class Brick {
 		active = true;
 	}
 	
-	public Brick(Color c) {
+	public Brick(int x, int y, Color c) {
+		this.x = x;
+		this.y = y;
 		this.c = c;
 		active = true;
 	}
@@ -23,6 +28,18 @@ public class Brick {
 	
 	public void del() {
 		active = false;
+	}
+	
+	public boolean isActive() {
+		return active;
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
 	}
 
 }

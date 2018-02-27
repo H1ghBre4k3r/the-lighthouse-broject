@@ -40,7 +40,7 @@ public class Ball {
 	}
 	
 	public void move() {
-		UnitCollission.check(this, p);
+		UnitCollission.check(controller);
 		this.x += this.xDir;
 		this.y += this.yDir;
 	}
