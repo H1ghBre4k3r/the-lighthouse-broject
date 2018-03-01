@@ -12,10 +12,12 @@ public class ViewController {
 	private ModelController mController;
 	
 	private DesktopFrame dFrame;
+	private LighthouseView lighthouse;
 
 	public ViewController(ModelController mController) {
 		this.mController = mController;
 		dFrame = new DesktopFrame(WIDTH, HEIGHT, TITLE, this.mController);
+		lighthouse = new LighthouseView();
 	}
 	
 	public int getWidth() {

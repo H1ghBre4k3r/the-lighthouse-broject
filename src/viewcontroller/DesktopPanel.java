@@ -63,6 +63,7 @@ public class DesktopPanel extends JPanel {
 			Brick[][] bricks = mController.getFeld().getBricks();
 			int brickWidth = mController.getFeld().getBrickWidth();
 			int brickHeight = mController.getFeld().getBrickHeight();
+			int brickOffset = mController.getFeld().getBrickOffset();
 			
 			for(int x = 0; x < bricks.length; x++) {
 				for(int y = 0; y < bricks[0].length; y++) {
@@ -70,7 +71,7 @@ public class DesktopPanel extends JPanel {
 						continue;
 					}
 					g.setColor(bricks[x][y].getC());
-					g.fillRect(x * brickWidth + 2, 140 - (y * 20) - 1, (int) brickWidth - 6, brickHeight);
+					g.fillRect(x * brickWidth + 2, brickOffset - (y * (int) brickHeight) - 1, (int) brickWidth - 6, brickHeight - 5);
 				}
 			}
 			

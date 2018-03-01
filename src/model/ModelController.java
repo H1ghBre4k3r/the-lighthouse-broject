@@ -23,7 +23,7 @@ public class ModelController {
 		
 		player = new Player(WIDTH / 2 - 50, HEIGHT - 50, 100, 20, 20, this);
 		
-		ball = new Ball(HEIGHT - 90, 30, 1, -1, player, this);
+		ball = new Ball(HEIGHT - 90, Main.getWidth() / 28, 1, -1, player, this);
 		
 		feld = new Spielfeld(7, 6);
 		

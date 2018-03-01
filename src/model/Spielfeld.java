@@ -22,7 +22,7 @@ public class Spielfeld {
 		this.width = width;
 		this.height = height;
 		
-		brickOffset = 140;
+		brickOffset = 160;
 		
 		brickWidth = Main.getWidth() / this.width;
 		brickHeight = 18;
