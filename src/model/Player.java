@@ -51,5 +51,12 @@ public class Player {
 	public ModelController getController() {
 		return controller;
 	}
+	
+	public void setX(int newX) {
+		if(newX < 0 || newX > Main.getWidth() - this.width) {
+			return;
+		}
+		this.x = newX;
+	}
 
 }

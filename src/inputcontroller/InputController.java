@@ -1,12 +1,15 @@
 package inputcontroller;
 
+import java.awt.MouseInfo;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 import model.Player;
 import viewcontroller.DesktopFrame;
 
-public class InputController implements KeyListener {
+public class InputController implements KeyListener, MouseMotionListener {
 	
 	private DesktopFrame frame;
 	private Player p;
@@ -43,6 +46,19 @@ public class InputController implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+
+		p.setX((int) (MouseInfo.getPointerInfo().getLocation().getX() - frame.getLocationOnScreen().getX()) - p.getWidth() / 2);
 		
 	}
 
