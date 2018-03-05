@@ -15,6 +15,7 @@ public class LighthouseView {
 	
 	private int wonTimer = 0;
 	private int looseTimer = 0;
+	private int lebenTimer = 0;
 
 	public LighthouseView(ModelController mController) {
 		this.mController = mController;
@@ -81,11 +82,15 @@ public class LighthouseView {
 				pXCoord += 1;
 			}
 	
-			for(int i = 0; i < mController.getLeben(); i ++) {
-				bytes[(27 - i) * 3] = (byte) 255;
-				bytes[(27 - i) * 3 + 1] = (byte) 128;
-				bytes[(27 - i) * 3 + 2] = (byte) 128;
+			// Leben malen
+			if((lebenTimer / 15) % 2 == 0) {
+				for(int i = 0; i < mController.getLeben(); i ++) {
+					bytes[(27 - i) * 3] = (byte) 255;
+					bytes[(27 - i) * 3 + 1] = (byte) 128;
+					bytes[(27 - i) * 3 + 2] = (byte) 128;
+				}
 			}
+			lebenTimer += 1;
 		} else {
 			for(int i = 0; i < bytes.length / 3; i++) {
 				bytes[i * 3] = (byte) 0;
