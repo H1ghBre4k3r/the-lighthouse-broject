@@ -15,7 +15,7 @@ public class Main {
 
 	private static int WIDTH = 500;
 	private static int HEIGHT = 800;
-	private static String TITLE = "Lighthouse Broject";
+	private static String TITLE = "Lighthouse Broject Beta";
 	
 	private static ModelController mController;
 	private static ViewController vController;
