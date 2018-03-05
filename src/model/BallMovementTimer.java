@@ -30,7 +30,7 @@ public class BallMovementTimer extends Timer {
 				
 			}
 			
-		}, 0, 5);
+		}, 0, 7);
 	}
 
 }

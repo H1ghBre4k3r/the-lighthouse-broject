@@ -50,11 +50,11 @@ public class UnitCollission {
 				
 				// Daten des aktuellen Bricks herausfinden
 				int brickX = brick.getX() * feld.getBrickWidth();
-				int brickY = feld.getBrickOffset() - brick.getY() * feld.getBrickHeight();
+				int brickY = feld.getBrickOffset() + brick.getY() * feld.getBrickHeight();
 				int brickWidth = feld.getBrickWidth();
 				int brickHeight = feld.getBrickHeight();
 				
-				// Wenn Brick nicht mehr aktiv ist, überspringen
+				// Wenn Brick nicht mehr aktiv ist, ï¿½berspringen
 				if(!brick.isActive()) {
 					continue;
 				}

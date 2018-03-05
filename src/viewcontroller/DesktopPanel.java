@@ -71,7 +71,7 @@ public class DesktopPanel extends JPanel {
 						continue;
 					}
 					g.setColor(bricks[x][y].getC());
-					g.fillRect(x * brickWidth + 2, brickOffset - (y * (int) brickHeight) - 1, (int) brickWidth - 6, brickHeight - 5);
+					g.fillRect(x * brickWidth + 2, brickOffset + (y * (int) brickHeight) - 1, (int) brickWidth - 6, brickHeight - 5);
 				}
 			}
 			

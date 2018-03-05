@@ -1,5 +1,7 @@
 package model;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import general.Main;
 
 public class ModelController {
@@ -18,14 +20,16 @@ public class ModelController {
 		
 		int WIDTH = Main.getWidth();
 		int HEIGHT = Main.getHeight();
+		System.out.println(HEIGHT / 14);
 		
 		leben = 3;
 		
-		player = new Player(WIDTH / 2 - 50, HEIGHT - 50, 100, 20, 20, this);
+		int playerWidth = (Main.getWidth() / 14) * 4;
+		player = new Player(WIDTH / 2 - playerWidth / 2, HEIGHT - (HEIGHT / 14), playerWidth, HEIGHT / 14, 20, this);
 		
-		ball = new Ball(HEIGHT - 90, Main.getWidth() / 28, 1, -1, player, this);
+		ball = new Ball(HEIGHT - 90, Main.getWidth() / 28, ThreadLocalRandom.current().nextBoolean(), -1, player, this);
 		
-		feld = new Spielfeld(7, 6);
+		feld = new Spielfeld(7, 3);
 		
 	}
 

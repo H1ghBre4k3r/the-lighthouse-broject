@@ -16,16 +16,16 @@ public class Spielfeld {
 	private int brickHeight;
 	private int brickOffset;
 	
-	private Color[] brickColors = {Color.RED, Color.GREEN, Color.YELLOW};
+	private Color[] brickColors = {Color.RED, Color.BLUE, Color.YELLOW};
 
 	public Spielfeld(int width, int height) {
 		this.width = width;
 		this.height = height;
 		
-		brickOffset = 160;
-		
 		brickWidth = Main.getWidth() / this.width;
-		brickHeight = 18;
+		brickHeight = Main.getHeight() / 14;
+		
+		brickOffset = brickHeight;
 		
 		init();
 	}
@@ -34,7 +34,7 @@ public class Spielfeld {
 		bricks = new Brick[width][height];
 		for(int i = 0; i < width; i++) {
 			for(int j = 0; j < height; j++) {
-				bricks[i][j] = new Brick(i, j, brickColors[j / 2]);
+				bricks[i][j] = new Brick(i, j, brickColors[j % 3]);
 			}
 		}
 	}

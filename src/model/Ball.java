@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import general.Main;
@@ -19,16 +20,23 @@ public class Ball {
 	private Player p;
 	
 	private ModelController controller;
+
+	Random generator;
 	
 	private BallMovementTimer timer;
 	
-	public Ball(int y, int width, int xDir, int yDir, Player p, ModelController controller) {
+	
+	public Ball(int y, int width, boolean xDir, int yDir, Player p, ModelController controller) {
+		
+		generator = new Random();
 		this.width = width;
-		this.x = ThreadLocalRandom.current().nextInt(0, Main.getWidth() - this.width);
+		 
+		this.x = generator.nextInt(Main.getWidth() - this.width) + 1;
 		this.y = y;
 		this.yOrigin = y;
 		
-		this.xDir = xDir;
+		this.xDir = xDir? 1 : -1;
+		System.out.println(this.xDir);
 		this.yDir = yDir;
 		
 		this.p = p;
