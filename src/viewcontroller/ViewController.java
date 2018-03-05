@@ -16,8 +16,12 @@ public class ViewController {
 
 	public ViewController(ModelController mController) {
 		this.mController = mController;
+	}
+	
+	public void start() {
 		dFrame = new DesktopFrame(WIDTH, HEIGHT, TITLE, this.mController);
-		lighthouse = new LighthouseView(mController);
+		lighthouse = new LighthouseView(this.mController);
+		lighthouse.start();
 	}
 	
 	public int getWidth() {
@@ -26,6 +30,10 @@ public class ViewController {
 	
 	public int getHeight() {
 		return this.HEIGHT;
+	}
+	
+	public LighthouseView getLighthouseView() {
+		return lighthouse;
 	}
 
 }

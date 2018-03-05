@@ -23,14 +23,25 @@ public class BallMovementTimer extends Timer {
 				if(b.getController().hasBeenStarted()) {
 					if(b.getController().isRunning()) {
 						b.move();
-					} else {
+						try {
+							Thread.sleep(1000 / b.getController().getSpeed());
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					} else if(b.getController().isLost()){
 						this.cancel();
 					}
 				}
 				
+				if(b.getController().getFeld().isEmpty()) {
+					b.getController().win();
+					this.cancel();
+				}
+				
 			}
 			
-		}, 0, 7);
+		}, 0, 1);
 	}
 
 }

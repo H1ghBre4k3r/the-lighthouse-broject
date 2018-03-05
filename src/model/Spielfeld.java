@@ -16,7 +16,7 @@ public class Spielfeld {
 	private int brickHeight;
 	private int brickOffset;
 	
-	private Color[] brickColors = {Color.RED, Color.BLUE, Color.YELLOW};
+	private Color[] brickColors = {Color.GREEN, Color.BLUE, Color.YELLOW, Color.orange, Color.MAGENTA};
 
 	public Spielfeld(int width, int height) {
 		this.width = width;
@@ -34,7 +34,7 @@ public class Spielfeld {
 		bricks = new Brick[width][height];
 		for(int i = 0; i < width; i++) {
 			for(int j = 0; j < height; j++) {
-				bricks[i][j] = new Brick(i, j, brickColors[j % 3]);
+				bricks[i][j] = new Brick(i, j, brickColors[j % brickColors.length]);
 			}
 		}
 	}
@@ -69,6 +69,17 @@ public class Spielfeld {
 	
 	public Brick[][] getBricks() {
 		return bricks;
+	}
+	
+	public boolean isEmpty() {
+		for(int i = 0; i < bricks.length; i++) {
+			for(int j = 0; j < bricks[0].length; j++) {
+				if(bricks[i][j].isActive()) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 }

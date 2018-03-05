@@ -16,7 +16,7 @@ public class UnitCollission {
 		
 		xOutOfBounce(b, p);
 		yOutOfBounce(b, p, controller);
-		hitBrick(b, feld);
+		hitBrick(controller);
 	}
 
 	private static void xOutOfBounce(Ball b, Player p) {
@@ -28,16 +28,27 @@ public class UnitCollission {
 	private static void yOutOfBounce(Ball b, Player p, ModelController controller) {
 		if(b.getY() < 0) {
 			// Game gewonnen!
-			controller.win();
+			// controller.win();
+			b.flipY();
 		} else if(b.getY() + b.getWidth() == p.getY() && b.getX() + b.getWidth() > p.getX() && b.getX() < p.getX() + p.getWidth()){
 			b.flipY();
+			int aufgekommen =  b.getX() + b.getWidth() / 2 - p.getX();
+			if(aufgekommen < p.getWidth() / 4) {
+				b.setXDir(2);
+			} else if(aufgekommen < p.getWidth() / 4 * 3) {
+				b.setXDir(1);
+			} else {
+				b.setXDir(2);
+			}
 		} else if(b.getY() + b.getWidth() > Main.getHeight()) {
 			p.getController().looseLife();
 		}
 	}
 	
-	private static void hitBrick(Ball b, Spielfeld feld) {
+	private static void hitBrick(ModelController controller) {
 		
+		Ball b = controller.getBALL();
+		Spielfeld feld = controller.getFeld();
 		Brick[][] bricks = feld.getBricks();
 
 		boolean flipX = false;
@@ -54,19 +65,21 @@ public class UnitCollission {
 				int brickWidth = feld.getBrickWidth();
 				int brickHeight = feld.getBrickHeight();
 				
-				// Wenn Brick nicht mehr aktiv ist, �berspringen
+				// Wenn Brick nicht mehr aktiv ist, ueberspringen
 				if(!brick.isActive()) {
 					continue;
 				}
 				
-				if(b.getY() == brickY + brickHeight && b.getX() < brickX + brickWidth && b.getX() + b.getWidth() > brickX) {
+				if((b.getY() <= brickY + brickHeight && b.getY() + b.getWidth() >= brickY) && b.getX() < brickX + brickWidth && b.getX() + b.getWidth() > brickX) {
 					flipY = true;
 					brick.del();
+					controller.speedUp();
 				}
 				
-				if((b.getX() == brickX + brickWidth || b.getX() + b.getWidth() == brickX) && b.getY() + b.getWidth() > brickY && b.getY() < brickY + brickHeight) {
+				if((b.getX() <= brickX + brickWidth && b.getX() + b.getWidth() >= brickX) && b.getY() + b.getWidth() > brickY && b.getY() < brickY + brickHeight) {
 					flipX = true;
 					brick.del();
+					controller.speedUp();
 				}
 				
 			}

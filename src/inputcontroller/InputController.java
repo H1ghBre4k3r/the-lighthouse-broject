@@ -29,15 +29,31 @@ public class InputController implements KeyListener, MouseMotionListener {
 	public void keyPressed(KeyEvent e) {
 
 		switch(e.getKeyCode()) {
-		case KeyEvent.VK_ENTER:
-			p.getController().start();
+		case KeyEvent.VK_ESCAPE:
+			if(p.getController().isRunning()) {
+				p.getController().pause();
+			} else {
+				p.getController().start();
+			}
 			break;
+		case KeyEvent.VK_ENTER:
+			if(p.getController().isLost() || p.getController().isWon()) {
+				p.getController().reset();
+			} else {
+				p.getController().start();
+			}
+			break;
+			
 		case KeyEvent.VK_RIGHT:
-			p.move(+1);
+			if(!p.getController().isLost() && !p.getController().isWon()) {
+				p.move(+1);
+			}
 			break;
 			
 		case KeyEvent.VK_LEFT:
-			p.move(-1);
+			if(!p.getController().isLost() && !p.getController().isWon()) {
+				p.move(-1);
+			}
 			break;
 		}
 		
@@ -57,8 +73,9 @@ public class InputController implements KeyListener, MouseMotionListener {
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-
-		p.setX((int) (MouseInfo.getPointerInfo().getLocation().getX() - frame.getLocationOnScreen().getX()) - p.getWidth() / 2);
+		if(!p.getController().isLost() && !p.getController().isWon()) {
+			p.setX((int) (MouseInfo.getPointerInfo().getLocation().getX() - frame.getLocationOnScreen().getX()) - p.getWidth() / 2);
+		}
 		
 	}
 

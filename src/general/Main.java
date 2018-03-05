@@ -27,6 +27,7 @@ public class Main {
 		
 		mController = new ModelController();
 		vController = new ViewController(mController);
+		vController.start();
 
 	}
 	
@@ -40,6 +41,10 @@ public class Main {
 	
 	public static ModelController getMController() {
 		return mController;
+	}
+	
+	public static ViewController getVController() {
+		return vController;
 	}
 
 }

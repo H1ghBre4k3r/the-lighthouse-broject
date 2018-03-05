@@ -41,7 +41,7 @@ public class DesktopPanel extends JPanel {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		if(Main.getMController().isRunning()) {
+		if(!Main.getMController().isLost() && !Main.getMController().isWon()) {
 			
 			if(!Main.getMController().hasBeenStarted()) {
 				g.setColor(Color.WHITE);
@@ -52,7 +52,7 @@ public class DesktopPanel extends JPanel {
 			g.drawString("Leben: " + Main.getMController().getLeben(), this.WIDTH - 70, 20);
 			
 			// Spieler zeichnen
-			g.setColor(Color.GRAY);
+			g.setColor(Color.RED);
 			g.fillRect(mController.getPLAYER().getX(), mController.getPLAYER().getY(), mController.getPLAYER().getWidth(), mController.getPLAYER().getHeight());
 			
 			// Ball zeichnen
@@ -75,8 +75,6 @@ public class DesktopPanel extends JPanel {
 				}
 			}
 			
-			
-			repaint();
 		} else if(mController.isLost()){
 			g.setColor(Color.WHITE);
 			g.drawString("Du hast verloren... also du bist nicht so gut wollen wir damit sagen!", this.WIDTH / 2 - 200, this.HEIGHT / 2);
@@ -84,6 +82,7 @@ public class DesktopPanel extends JPanel {
 			g.setColor(Color.WHITE);
 			g.drawString("Du hast gewonnen... also du bist ganz gut wollen wir damit sagen!", this.WIDTH / 2 - 200, this.HEIGHT / 2);
 		}
+		repaint();
 	}
 	
 

@@ -15,21 +15,23 @@ public class ModelController {
 	private boolean started = false;
 	private boolean won = false;
 	private boolean lost = false;
+	
+	private int speed = 140;
 
 	public ModelController() {
 		
 		int WIDTH = Main.getWidth();
 		int HEIGHT = Main.getHeight();
-		System.out.println(HEIGHT / 14);
 		
 		leben = 3;
+
+		feld = new Spielfeld(7, 5);
 		
 		int playerWidth = (Main.getWidth() / 14) * 4;
 		player = new Player(WIDTH / 2 - playerWidth / 2, HEIGHT - (HEIGHT / 14), playerWidth, HEIGHT / 14, 20, this);
 		
 		ball = new Ball(HEIGHT - 90, Main.getWidth() / 28, ThreadLocalRandom.current().nextBoolean(), -1, player, this);
 		
-		feld = new Spielfeld(7, 3);
 		
 	}
 
@@ -55,7 +57,10 @@ public class ModelController {
 		if(leben > 1) {
 			leben -= 1;
 			ball.reset();
+			running = false;
+			Main.getVController().getLighthouseView().loose();
 		} else {
+			leben -= 1;
 			running = false;
 			lost = true;
 			System.out.println("Du hast verloren! DU LOOOOSER!");
@@ -67,6 +72,7 @@ public class ModelController {
 		running = false;
 		won = true;
 		System.out.println("Du hast Gewonnen!");
+		Main.getVController().getLighthouseView().win();
 	}
 	
 	public void start() {
@@ -88,6 +94,32 @@ public class ModelController {
 	
 	public boolean hasBeenStarted() {
 		return started;
+	}
+	
+	public void speedUp() {
+		speed *= 1.05;
+	}
+	
+	public int getSpeed() {
+		return speed;
+	}
+	
+	public void pause() {
+		running = false;
+	}
+	
+	public void reset() {
+		running = true;
+		lost = false;
+		won = false;
+		started = false;
+		
+		leben = 3;
+		
+		feld = new Spielfeld(7, 3);
+		
+		ball = new Ball(Main.getHeight() - 90, Main.getWidth() / 28, ThreadLocalRandom.current().nextBoolean(), -1, player, this);
+		
 	}
 
 }

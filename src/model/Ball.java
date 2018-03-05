@@ -36,7 +36,6 @@ public class Ball {
 		this.yOrigin = y;
 		
 		this.xDir = xDir? 1 : -1;
-		System.out.println(this.xDir);
 		this.yDir = yDir;
 		
 		this.p = p;
@@ -60,6 +59,8 @@ public class Ball {
 	public void flipY() {
 		this.yDir *= -1;
 	}
+	
+	
 	
 	public void reset() {
 		this.x = ThreadLocalRandom.current().nextInt(0, Main.getWidth() - this.width);
@@ -86,6 +87,14 @@ public class Ball {
 
 	public int getyDir() {
 		return yDir;
+	}
+	
+	public void setXDir(int xDir) {
+		if(this.xDir > 0) {
+			this.xDir = xDir;
+		} else {
+			this.xDir = - xDir;
+		} 
 	}
 
 	public Player getP() {
