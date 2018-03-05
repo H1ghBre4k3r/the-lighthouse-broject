@@ -97,7 +97,7 @@ public class ModelController {
 	}
 	
 	public void speedUp() {
-		speed *= 1.05;
+		speed *= 1.03;
 	}
 	
 	public int getSpeed() {
@@ -116,7 +116,7 @@ public class ModelController {
 		
 		leben = 3;
 		
-		feld = new Spielfeld(7, 3);
+		feld = new Spielfeld(7, 5);
 		
 		ball = new Ball(Main.getHeight() - 90, Main.getWidth() / 28, ThreadLocalRandom.current().nextBoolean(), -1, player, this);
 		

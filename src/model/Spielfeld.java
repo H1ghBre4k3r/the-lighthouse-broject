@@ -16,7 +16,7 @@ public class Spielfeld {
 	private int brickHeight;
 	private int brickOffset;
 	
-	private Color[] brickColors = {Color.GREEN, Color.BLUE, Color.YELLOW, Color.orange, Color.MAGENTA};
+	private Color[] brickColors = {Color.GREEN, Color.BLUE, Color.YELLOW, Color.PINK, Color.MAGENTA};
 
 	public Spielfeld(int width, int height) {
 		this.width = width;
