@@ -23,8 +23,16 @@ public class Player {
 	}
 	
 	public void move(int dir) {
-		if(x + dir > 0 && x + dir + width < Main.getWidth()) {
+		if(x + dir > 0 ) {
 			x += dir * speed;
+		} else {
+			x = 0;
+		} 
+		
+		if(x + dir + width < Main.getWidth()) {
+			x += dir * speed;
+		} else {
+			x = Main.getWidth() - width;
 		}
 	}
 
