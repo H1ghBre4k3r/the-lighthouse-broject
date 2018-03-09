@@ -1,5 +1,3 @@
-# THE LIGHTHOUSE BROJECT
-
 Um Breakout so elegant und effizient wie möglich zu pogrammieren, haben wir uns dazu entschieden, das Spiel in mehrere verschieden Klassen und Paktete zu unterteilen.
 Das Spiel wird grundsätzlich über die main-Methode in der gleichnamigen Klasse gestartet. Von dort aus wird das "Problem" (in diesem Fall das Spiel) in kleinere
 Klassen unterteilt, die alle für einen gewissen Bereich oder eine gewisse Aufgabe im Spiel zuständig sind. Hierbei sind wir nach dem MVC-Pattern vorgegangen.
@@ -22,7 +20,8 @@ Die Bewegung des Balls wird durch die Klasse "BallMovementTimer" organisiert. Si
 Ball bewegt und dabei immer überprüft, ob aktuell alle Bricks zerstört sind. Diese "Abfrage" in diese Methode zu implementieren ist daher sinnvoll, dass dafür kein 
 extra Thread gestartet werden muss und es dadurch zu keinen Komplikationen kommen kann. Die für das Abprallen notwendige Kollisions-Abfrage wird ebenfalls von einer 
 Klasse (CollissionDetection) übernommen. Ihre Methoden sind alle statisch, damit sie immer und zu jedem Zeitpunkt aufgerufen werden können, ohne dass vorher ein 
-Objekt erzeugt werden muss. Sie bekommt alle für die Kollision wichtigen Objekte bei ihrem Aufruf als Parameter übergeben und wertet diese dann aus.
+Objekt erzeugt werden muss. Sie bekommt alle für die Kollision wichtigen Objekte bei ihrem Aufruf als Parameter übergeben und wertet diese dann aus (überprüft, 
+ob der Ball auserhalb des Spielfelds ist oder in/an einem Brick oder dem Spieler).
 Grundsätzlich sind ALLE Variablen 'private', damit von außen nicht ungewollt auf sie zugegriffen werden kann. Sollte dennoch ein Zugriff notwendig sein, zum Beispiel 
 um den Wert einer Variablen (sei es die aktuelle Position des Balls oder die aktuelle Instanz des ModelControllers) zu erhalten, haben wir für diese Variablen
 public Getter-Methoden geschrieben. In einigen wenigen Fällen ist es notwenig, dass der Wert einer Variable von außerhalb der Klasse geändert wird; hierfür haben 
@@ -41,4 +40,13 @@ jedem "Zeichen-Durchgang" einen Byte-Array an das Display. Dieser Byte-Array wir
 aussieht wie auf dem DesktopFrame - hierbei sind die Daten über die Bricks (also deren Höhe und deren Breite) sehr hilfreich, da diese leicht auf das Lighthouse 
 "umzurechnen" sind. Für die Position des Balls und des Spielers wird ausgerechnet, in welchem Fenster sich der Ball und der Spielder rein rechnerisch befinden 
 (also welche Fenster ihren Koordinaten ungefähr entsprechen). Es gibt dazu noch extra Anzeigen für das Leben (in der obersten Reihe die Fenster ganz rechts stellen 
-die Leben dar).
+die Leben dar) und wenn der Spieler gewinnt (grünes Aufblinken des Lighthouses) und wenn der Spieler Leben verliert (rotes Aufblinken des Lighthouses). Dieser 
+Byte-Array wird dann bei jedem Durchgang an das Lighthouse gesendet.
+
+Zu guter Letzt kommen wir zu unser Implementierung des Controllers:
+Bei uns kann der Nutzer den Spieler entweder über die Pfeiltasten (KeyListener) oder über die Maus (MouseMotionListener) steuern. Hierfür haben wir eine Klasse 
+InputController implementiert, die die Eingaben des Nutzers organisiert. Sollte der Spieler einer der Pfeiltaste Link oder Rechts klicken, so bewegt sich die 
+Spielfigur in die entsprechende Richtung. Hierbei kann es jedoch zu teils starken Verzögerungen kommen, da die "KeyPressed"-Methode durch die Tastatur nicht 
+kontinuierlich, sondern mit kleinen Abständen aufgerufen wird. Um diese Verzögerung zu verhindern haben wir die Funktion hinzugefügt, den Spieler mit der 
+Bewegung seiner Maus zu steuern. Hierbei wird immer dann, wenn die Maus vom Nutzer bewegt wird, der Mittelpunkt des Spielers auf die x-Position der Maus gelegt - 
+dadurch sind nahezu uneingeschränkt flüssige Bewegungen möglich.
