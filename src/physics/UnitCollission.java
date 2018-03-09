@@ -7,24 +7,35 @@ import model.ModelController;
 import model.Player;
 import model.Spielfeld;
 
+/**
+ * Klasse, die für die Kollisions-Abfrage zustäding ist.
+ */
 public class UnitCollission {
 	
+	/**
+	 * Wird als erstes aufgerufen. Ruft nacheinander die anderen Methoden auf, die überprüfen, ob der Ball mit irgendeinem Objekt kollidiert.
+	 */
 	public static void check(ModelController controller) {
 		Player p = controller.getPLAYER();
 		Ball b = controller.getBALL();
-		Spielfeld feld = controller.getFeld();
 		
 		xOutOfBounce(b, p);
 		yOutOfBounce(b, p, controller);
 		hitBrick(controller);
 	}
 
+	/**
+	 * Überprüft, ob der Ball in x-Richtung aus dem Spielfeld fliegt und ändert dementsprechend die Flugrichtungen.
+	 */
 	private static void xOutOfBounce(Ball b, Player p) {
 		if(b.getX() < 0 || b.getX() + b.getWidth() > Main.getWidth()) {
 			b.flipX();
 		}
 	}
 	
+	/**
+	 * Überprüft, ob der Ball in y-Richtung aus dem Spielfeld oder gegen den Spieler fliegt und ändert dementsprechend die Flugrichtungen.
+	 */
 	private static void yOutOfBounce(Ball b, Player p, ModelController controller) {
 		if(b.getY() < 0) {
 			// Game gewonnen!
@@ -45,6 +56,10 @@ public class UnitCollission {
 		}
 	}
 	
+	/**
+	 * Überprüft, ob der Ball gegen einen Brick fliegt und ändert dementsprechend die Flugrichtungen.
+	 * @param controller
+	 */
 	private static void hitBrick(ModelController controller) {
 		
 		Ball b = controller.getBALL();

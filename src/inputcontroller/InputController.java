@@ -9,11 +9,22 @@ import java.awt.event.MouseMotionListener;
 import model.Player;
 import viewcontroller.DesktopFrame;
 
+/**
+ * Klasse, die dafür zuständig ist, den User-Input zu verwalten (über Tastatur und Maus).
+ *
+ */
 public class InputController implements KeyListener, MouseMotionListener {
 	
 	private DesktopFrame frame;
 	private Player p;
 
+	/**
+	 * Initialisiert einen neue Instanz von InputController mit den Übergabeparametern
+	 * @param frame
+	 * 			Der DesktopFrame, zu dem dieser InputController gehört.
+	 * @param p
+	 * 			Der aktuelle Spieler.
+	 */
 	public InputController(DesktopFrame frame, Player p) {
 		this.frame = frame;
 		this.p = p;
@@ -30,13 +41,16 @@ public class InputController implements KeyListener, MouseMotionListener {
 
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_ESCAPE:
+			// Spiel pausieren
 			if(p.getController().isRunning()) {
 				p.getController().pause();
 			} else {
 				p.getController().start();
 			}
 			break;
+			
 		case KeyEvent.VK_ENTER:
+			// Spiel neustarten bzw nach Pause fortsetzen
 			if(p.getController().isLost() || p.getController().isWon()) {
 				p.getController().reset();
 			} else {
@@ -45,12 +59,14 @@ public class InputController implements KeyListener, MouseMotionListener {
 			break;
 			
 		case KeyEvent.VK_RIGHT:
+			// Spieler nach rechts bewegen
 			if(!p.getController().isLost() && !p.getController().isWon()) {
 				p.move(+1);
 			}
 			break;
 			
 		case KeyEvent.VK_LEFT:
+			// Spieler nach links bewegen
 			if(!p.getController().isLost() && !p.getController().isWon()) {
 				p.move(-1);
 			}
@@ -73,6 +89,7 @@ public class InputController implements KeyListener, MouseMotionListener {
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
+		// Position des Spielers an die Position der Maus über dem Frame anpassen
 		if(!p.getController().isLost() && !p.getController().isWon()) {
 			p.setX((int) (MouseInfo.getPointerInfo().getLocation().getX() - frame.getLocationOnScreen().getX()) - p.getWidth() / 2);
 		}

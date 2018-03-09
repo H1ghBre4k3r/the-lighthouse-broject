@@ -3,11 +3,13 @@ package viewcontroller;
 import javax.swing.JFrame;
 
 import inputcontroller.InputController;
-import model.Ball;
 import model.ModelController;
-import model.Player;
 
 
+/**
+ * Klasse, zur Repräsentation des Dekstopfensters.
+ *
+ */
 public class DesktopFrame extends JFrame {
 	
 	private static int WIDTH;
@@ -17,6 +19,18 @@ public class DesktopFrame extends JFrame {
 	
 	private ModelController mController;
 	
+	/**
+	 * Initialisiert eine neue Instanz der Klasse DesktopFrame mit den vorhandenen Parametern.
+	 * 
+	 * @param width
+	 * 				Die Breite des Fensters.
+	 * @param height
+	 * 				Die Höhe des Fensters.
+	 * @param title
+	 * 				Der Titel des Fensters.
+	 * @param mController
+	 * 				Der ModelController, der für das Model des Spiels zuständig ist.
+	 */
 	public DesktopFrame(int width, int height, String title, ModelController mController) {
 		this.WIDTH = width;
 		this.HEIGHT = height;
@@ -27,6 +41,9 @@ public class DesktopFrame extends JFrame {
 		init();
 	}
 	
+	/**
+	 * Gibt dem Fenster alle wichtigen Eigenschaften (Breite, Höhe etc.) und erschafft den InputController.
+	 */
 	private void init() {
 		this.setTitle(TITLE);
 		this.setSize(WIDTH, HEIGHT);

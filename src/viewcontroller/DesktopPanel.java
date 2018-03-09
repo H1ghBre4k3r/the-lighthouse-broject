@@ -8,17 +8,29 @@ import java.awt.RenderingHints;
 import javax.swing.JPanel;
 
 import general.Main;
-import model.Ball;
 import model.Brick;
 import model.ModelController;
-import model.Player;
 
+/**
+ * Klasse, zur Repräsentation der Zeichenfläche auf dem JFrame.
+ *
+ */
 public class DesktopPanel extends JPanel {
 	
 	private static int WIDTH;
 	private static int HEIGHT;
 	private ModelController mController;
 
+	/**
+	 * Initialisiert eine neue Instanz der Klasse DesktopPanel mit den vorhandenen Parametern.
+	 * 
+	 * @param width
+	 * 			Die Breite der Zeichenfläche.
+	 * @param height
+	 * 			Die Höhe der Zeichenfläche.
+	 * @param mController
+	 * 			Der aktuelle ModelController.
+	 */
 	public DesktopPanel(int width, int height, ModelController mController) {
 		this.WIDTH = width;
 		this.HEIGHT = height;
@@ -35,19 +47,22 @@ public class DesktopPanel extends JPanel {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
 
-		/* Weiche Kanten */
+		// Weiche Kanten
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
+		// Hintergrund  
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		if(!Main.getMController().isLost() && !Main.getMController().isWon()) {
 			
 			if(!Main.getMController().hasBeenStarted()) {
+				// Falls das Spiel noch nicht gestartet ist
 				g.setColor(Color.WHITE);
 				g.drawString("Drücke Enter um das Spiel zu starten", this.WIDTH / 2 - 120, this.HEIGHT / 2);
 			}
 		
+			// Aktuelle Leben zeichnen
 			g.setColor(Color.WHITE);
 			g.drawString("Leben: " + Main.getMController().getLeben(), this.WIDTH - 70, 20);
 			
@@ -76,9 +91,11 @@ public class DesktopPanel extends JPanel {
 			}
 			
 		} else if(mController.isLost()){
+			// Wenn das Spiel verloren ist
 			g.setColor(Color.WHITE);
 			g.drawString("Du hast verloren... also du bist nicht so gut wollen wir damit sagen!", this.WIDTH / 2 - 200, this.HEIGHT / 2);
 		} else if(mController.isWon()) {
+			// Wenn das Spiel gewonnen ist
 			g.setColor(Color.WHITE);
 			g.drawString("Du hast gewonnen... also du bist ganz gut wollen wir damit sagen!", this.WIDTH / 2 - 200, this.HEIGHT / 2);
 		}

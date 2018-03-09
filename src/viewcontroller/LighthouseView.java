@@ -1,13 +1,17 @@
 package viewcontroller;
 
 import java.io.IOException;
-import java.util.concurrent.ThreadLocalRandom;
 
 import de.cau.infprogoo.lighthouse.LighthouseDisplay;
 import general.Main;
 import model.Brick;
 import model.ModelController;
 
+/**
+ * Klasse zum "zeichnen" auf dem Lighthouse.
+ * @author louis
+ *
+ */
 public class LighthouseView {
 	
 	private LighthouseDisplay display;
@@ -17,15 +21,26 @@ public class LighthouseView {
 	private int looseTimer = 0;
 	private int lebenTimer = 0;
 
+	/**
+	 * Erstellt eine neue Instanz der Klasse mit dem aktuellen ModelController als Übergabewert.
+	 * @param mController
+	 * 				Der aktuelle Modelkontroller.
+	 */
 	public LighthouseView(ModelController mController) {
 		this.mController = mController;
 	}
 	
+	/**
+	 * Startet die Klasse. (Extra Methode, damit die Initialisierung der Instanz abgeschlossen werden kann.)
+	 */
 	public void start() {
 		init();
 		draw();
 	}
 	
+	/**
+	 * Stellt eine Verbindung zum Lighthouse her.
+	 */
 	private void init() {
 		display = new LighthouseDisplay("louismeyer", "API-TOK_wpwd-jQii-s1id-VYZO-ZObT", 1);
 		try {
@@ -36,6 +51,9 @@ public class LighthouseView {
 		}
 	}
 	
+	/**
+	 * Erstellt einen Byte-Array anhand der vorhandenen Daten über das Spiel und sendet diesen dann ans Lighthouse.
+	 */
 	private void draw() {
 		byte[] bytes = new byte[1176];
 		
@@ -124,10 +142,16 @@ public class LighthouseView {
 		draw();
 	}
 	
+	/**
+	 * Wird aufgerufen, sobald das Spiel gewonnen ist. Setzt den Timer für das aufblinken des Displays.
+	 */
 	public void win() {
 		wonTimer = 60;
 	}
 	
+	/**
+	 * Wird aufgerufen, sobald der Spieler ein Leben verliert. Setzt den Timer für das aufblinken den Displays.
+	 */
 	public void loose() {
 		looseTimer = 10;
 	}
